@@ -1,49 +1,24 @@
 # Dokumentasi Fase 3: Parser (Analisis Sintaksis)
 
-**Status**: Selesai, Stabil, Aman.
-**Tanggal Verifikasi**: 2026-06-08
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Status](https://img.shields.io/badge/Status-Selesai-success?style=for-the-badge) ![Keamanan](https://img.shields.io/badge/Keamanan-Stabil_&_Aman-success?style=for-the-badge)
 
-## Hasil Implementasi
-Parser telah berhasil dibangun untuk menerima token dari Lexer dan merakitnya menjadi **Parse Tree (Concrete Syntax Tree)** murni menggunakan algoritma *Recursive Descent Parsing*. Sesuai arsitektur yang disepakati, Parser tidak melakukan reduksi AST pada tahapan ini, melainkan menyimpan setiap elemen sintaksis mentah.
+> **Konteks:** Dokumen ini menjelaskan rancangan, implementasi, dan validasi untuk **Fase 3: Parser** dari kompilator MinangScript.
 
-File yang dibuat:
-- `src/cst_nodes.py`: Mendefinisikan class `ParseNode` untuk pembentukan *tree* hirarkis bersarang dan berisi *printer* visual.
-- `src/parser.py`: Engine *Recursive Descent* Parser lengkap yang menangani Presedensi Operator Matematika (Kali/Bagi > Tambah/Kurang), Blok Kode, Percabangan (kok, kok_lain, lainnyo), Perulangan, Deklarasi Fungsi, dan Pemanggilan Fungsi.
-- `tests/test_parser.py`: Suite pengujian (unit testing).
+## Apa itu Fase 3 (Parser)?
+Fase 3 (Parser) adalah tahapan analisis sintaksis yang menerima aliran Token dari Lexer dan merakitnya menjadi sebuah pohon struktural yang disebut *Parse Tree* atau *Concrete Syntax Tree (CST)*, guna memverifikasi bahwa urutan token sesuai dengan aturan Context-Free Grammar.
 
-## Bukti Validasi (Visualisasi Terminal CLI)
-Seluruh 4 *test case* berhasil *pass* dalam **0.002s** tanpa *error* dan mampu mencetak pohon secara rekursif sempurna:
+## Rincian Implementasi
+Parser ini dirakit murni menggunakan algoritma rekursif **Recursive Descent Parsing**. Pada fase ini, sistem tidak melakukan modifikasi atau reduksi apapun (bersifat struktural penuh). Semua karakter, termasuk tanda baca dekoratif seperti kurung dan titik dua, disimpan secara eksplisit di dalam Tree.
 
-### Contoh Parse Tree Assignment (`x = 5`)
-```text
-program
-  assignment_stmt
-    'x' (IDENTIFIER)
-    '=' (OPERATOR)
-    primary
-      '5' (NUMBER)
-```
+File yang digunakan dalam eksekusi ini:
+- `src/cst_nodes.py`: Mendefinisikan class `ParseNode` untuk pembentukan *tree* hierarkis bersarang dan modul pencetak (*printer*) visual.
+- `src/parser.py`: Engine *Recursive Descent* Parser lengkap yang menangani Presedensi Operator Matematika, Blok Kode, Percabangan (`kok`, `kok_lain`, `lainnyo`), Perulangan, dan Pemanggilan Fungsi.
 
-### Contoh Parse Tree Kompleks (`x = (2 + 3) * 5`)
-```text
-program
-  assignment_stmt
-    'x' (IDENTIFIER)
-    '=' (OPERATOR)
-    factor_expression
-      grouping
-        '(' (LPAREN)
-        term_expression
-          primary
-            '2' (NUMBER)
-          '+' (OPERATOR)
-          primary
-            '3' (NUMBER)
-        ')' (RPAREN)
-      '*' (OPERATOR)
-      primary
-        '5' (NUMBER)
-```
+## Hasil Validasi
+Berdasarkan metrik pengujian di `tests/test_parser.py`:
+1. **Tingkat Kelulusan:** 100% *Pass* pada seluruh 4 kasus uji coba kompleks.
+2. **Waktu Respons:** Total waktu eksekusi validasi memakan waktu **0.002 detik**.
+3. **Pencetakan Visual:** Algoritma Parser mampu merepresentasikan pohon bersarang (nested) sempurna, misalnya `x = (2 + 3) * 5`, membuktikan integritas hirarkis bekerja tanpa interupsi kesalahan sintaksis.
 
-## Tindak Lanjut
-Fase 3 secara sah telah selesai. Seluruh validasi syntax dan integritas hierarkis berjalan lancar. Proses berikutnya akan berfokus eksklusif pada **Fase 4: AST (Abstract Syntax Tree)**, di mana *Parse Tree* ini akan dipangkas dari entitas dekoratifnya (seperti `'('`, `'{'`) menjadi struktur operasi fundamental.
+---
+*Terakhir Diperbarui: 2026-06-08*

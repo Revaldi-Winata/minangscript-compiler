@@ -1,6 +1,6 @@
 # MinangScript Mini Compiler
 
-Status: Tahap Pengembangan (Under Development)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Status](https://img.shields.io/badge/Status-Tahap_Pengembangan-yellow?style=for-the-badge) ![Lisensi](https://img.shields.io/badge/Lisensi-MIT-green?style=for-the-badge)
 
 MinangScript Mini Compiler adalah proyek kompilator berukuran kecil yang mengadaptasi sebagian kosakata bahasa pemrograman ke dalam bahasa daerah Minangkabau. Proyek ini dibangun sebagai eksperimen dan implementasi praktikum untuk ranah ilmu Teknik Kompilasi. 
 
