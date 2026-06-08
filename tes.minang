@@ -1,0 +1,15 @@
+buek faktorial(n) {
+    kok (n <= 1) {
+        baliakan 1
+    }
+    baliakan n * faktorial(n - 1)
+}
+
+cetak("Mulai uji coba MinangScript...")
+hasil = faktorial(5)
+cetak("Faktorial 5 adalah:")
+cetak(hasil)
+
+untuak (i di rentang(3)) {
+    cetak(i)
+}

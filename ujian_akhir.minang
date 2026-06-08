@@ -1,0 +1,27 @@
+buek tambah(a, b) {
+    baliakan a + b
+}
+
+buek main() {
+    cetak("=== Ujian Akhir MinangScript ===")
+    
+    angka_awal = 1
+    salamo (angka_awal <= 3) {
+        cetak("Iterasi ke-")
+        cetak(angka_awal)
+        angka_awal = angka_awal + 1
+    }
+
+    tes_optimasi = 10 * 5 + 2
+    kok (tes_optimasi > 50) {
+        cetak("Optimasi Matematika Berhasil!")
+    } lainnyo {
+        cetak("Gagal Optimasi")
+    }
+
+    hasil = tambah(10, 20)
+    cetak("Hasil Tambah:")
+    cetak(hasil)
+}
+
+main()
